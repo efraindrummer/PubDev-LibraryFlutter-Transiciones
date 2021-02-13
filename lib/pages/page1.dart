@@ -1,3 +1,4 @@
+import 'package:custom_transition_route/helpers/route_transition.dart';
 import 'package:custom_transition_route/pages/page2.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,12 @@ class Page1 extends StatelessWidget {
           child: Text('Go to page 2'),
           color: Colors.white,
           onPressed: (){
-            //Navigator.push(context, MaterialPageRoute(builder: (_) => Page2()));
+            RouteTransitions(
+              context: context,
+              child: Page2(),
+              animation: AnimationType.fadeIn,
+              duration: Duration(milliseconds: 100)
+            );
           },
         )
       ),
