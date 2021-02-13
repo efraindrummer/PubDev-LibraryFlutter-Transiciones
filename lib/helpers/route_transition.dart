@@ -11,12 +11,14 @@ class RouteTransitions {
   final Widget child;
   final AnimationType animation;
   final Duration duration;
+  final bool replacement;
 
   RouteTransitions({
     @required this.context, 
-    @required this.child, 
+    @required this.child,
+    this.replacement = false,
     this.animation = AnimationType.normal,
-    this.duration = const Duration( milliseconds: 300 )
+    this.duration = const Duration( milliseconds: 300 ),
   }) {
 
     switch (this.animation) {
@@ -31,7 +33,17 @@ class RouteTransitions {
 
   }
 
-  void _normalTransition() => Navigator.push(context, MaterialPageRoute(builder: (_) => this.child));
+  void _pushPage(Route route) => Navigator.push(context, route);
+  void _pushReplacementPage(Route route) => Navigator.pushReplacement(context, route);
+
+
+  void _normalTransition(){
+    
+    final route = MaterialPageRoute(builder: (_) => this.child);
+
+    (this.replacement) ? this._pushReplacementPage(route) : this._pushPage(route);
+
+  }
 
   void _fadeInTransition() {
 
@@ -48,7 +60,7 @@ class RouteTransitions {
       }
     );
 
-    Navigator.push(context, route);
+    (this.replacement) ? this._pushReplacementPage(route) : this._pushPage(route);
   }
 
 }

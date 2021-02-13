@@ -20,8 +20,9 @@ class Page1 extends StatelessWidget {
             RouteTransitions(
               context: context,
               child: Page2(),
-              animation: AnimationType.fadeIn,
-              duration: Duration(milliseconds: 100)
+             /*  animation: AnimationType.fadeIn,
+              duration: Duration(milliseconds: 100),
+              replacement: true */
             );
           },
         )
