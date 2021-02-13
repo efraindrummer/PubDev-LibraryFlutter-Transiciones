@@ -1,3 +1,5 @@
+import 'package:custom_transition_route/pages/page1.dart';
+import 'package:custom_transition_route/pages/page2.dart';
 import 'package:flutter/material.dart';
  
 void main() => runApp(MyApp());
@@ -8,16 +10,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material App',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Material App Bar'),
-        ),
-        body: Center(
-          child: Container(
-            child: Text('Hello World'),
-          ),
-        ),
-      ),
+      initialRoute: 'page1',
+      routes: {
+        'page1' : ( _ ) => Page1(),
+        'page2' : ( _ ) => Page2()
+      },
     );
   }
 }
